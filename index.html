@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="_css/main.css" />
+        <link rel="icon" href="_imagens/imgAba.jpg" />
+        <link href="_textoSite/onePieceFont.ttf" rel="stylesheet">
+        <title>Chapéu de Palha | Home</title>
+        
+    </head>
+    <body>
+        <header id="Topo" class style="margin-top: 0px">
+        
+            <a href="index.html"><img class="capaimg" src="_imagens/imgTopo.png" /></a>
+            
+             <nav id="menu">
+                
+             <ul>
+                 <li><a href="_pages/_historia.html">História</a></li>
+                 <li><a href="_pages/_personagens.html" >Personagens</a></li>
+                 <li><a href="_pages/_akumaNoMi.html">Akuma no Mi</a></li>
+                 <li><a href="_pages/_sobre.html" >Sobre</a></li>
+             </ul>
+                
+        </nav>
+        
+        
+        </header></br>
+    
+    
+     <figure id="sliderHome">
+           <span class="trs next"></span>
+           <span class="trs prev"></span>
+           
+           
+           <div id="slider">
+               <a href="_pages/_mugiwaras.html" class="trs"><img class="cartaz1" src="_imagens/imgSlide.jpg" alt= "Bando do Chapéu de Palha" /></a>
+               <a href="_pages/_mugiwaras.html" class="trs"><img class="cartaz2" src="_imagens/imgSlide2.jpg" alt="Bando do Chapéu de Palha." /></a>
+           </div>
+        
+        
+           <figcaption></figcaption>
+            
+        
+        </figure>
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+    <script type="text/javascript">
+        
+        function setaImagem(){
+            var settings = {
+                primeiraImg: function(){
+                    elemento = document.querySelector("#slider a:first-child");
+                    elemento.classList.add("ativo");
+                    this.legenda(elemento);
+            },
+                
+                slide: function(){
+                    elemento = document.querySelector(".ativo");
+                    
+                    if(elemento.nextElementSibling){
+                        elemento.nextElementSibling.classList.add("ativo");
+                        settings.legenda(elemento.nextElementSibling);
+                        elemento.classList.remove("ativo");
+                    }else{
+                        elemento.classList.remove("ativo");
+                        settings.primeiraImg();
+                    }
+                
+                },
+                
+                proximo: function(){
+                    clearInterval(intervalo);
+                    elemento = document.querySelector(".ativo");
+                    
+                    if(elemento.nextElementSibling){
+                        elemento.nextElementSibling.classList.add("ativo");
+                        settings.legenda(elemento.nextElementSibling);
+                        elemento.classList.remove("ativo");
+                    }else{
+                        elemento.classList.remove("ativo");
+                        settings.primeiraImg();
+                        
+                    }
+                    intervalo = setInterval(settings.slide,4000);
+                
+                },
+                
+                
+                anterior: function(){
+                    clearInterval(intervalo);
+                    elemento = document.querySelector(".ativo");
+                    
+                    
+                    if(elemento.previousElementSibling){
+                        elemento.previousElementSibling.classList.add("ativo");
+                        settings.legenda(elemento.previousElementSibling);
+                        elemento.classList.remove("ativo");
+                    }else{
+                        elemento.classList.remove("ativo");
+                        elemento = document.querySelector("a:last-child");
+                        elemento.classList.add("ativo");
+                        this.legenda(elemento);
+                    }
+                    intervalo = setInterval(settings.slide,4000);
+                },
+                
+                legenda: function(obj){
+                    var legenda = obj.querySelector("img").getAttribute("alt");
+                    document.querySelector("figcaption").innerHTML = legenda;
+                }
+                
+            }
+                    
+        
+        //chama o slide
+        settings.primeiraImg();
+        
+        //chama a legenda
+        settings.legenda(elemento);
+        
+        //chama o slide à um determinado tempo
+        var intervalo = setInterval(settings.slide,4000);
+        document.querySelector(".next").addEventListener("click", settings.proximo, false);
+        document.querySelector(".prev").addEventListener("click", settings.anterior, false);
+            
+        }    
+    
+    
+    window.addEventListener("load", setaImagem, false);
+    
+    </script>    
+    </body>
+</html>
